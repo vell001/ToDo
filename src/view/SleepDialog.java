@@ -2,10 +2,10 @@ package view;
 
 import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Font;
 import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Label;
+import java.util.ResourceBundle;
 
 import controller.SettingManager;
 
@@ -37,11 +37,11 @@ public class SleepDialog extends Dialog{
 	private void addComponents() {
 		timeLabel = new Label();
 		timeLabel.setAlignment(Label.CENTER);
-		timeLabel.setFont(new Font("Consolas", Font.BOLD, 40));
+		timeLabel.setFont(SettingManager.getManager().getVfont().deriveFont(40));
 		mesLabel = new Label();
 		mesLabel.setAlignment(Label.CENTER);
-		mesLabel.setText("It's time to take a break");
-		mesLabel.setFont(new Font("Consolas", 0, 20));
+		mesLabel.setText(ResourceBundle.getBundle("string").getString("sleepText"));
+		mesLabel.setFont(SettingManager.getManager().getVfont().deriveFont(20));
 		add(timeLabel);
 		add(mesLabel);
 	}

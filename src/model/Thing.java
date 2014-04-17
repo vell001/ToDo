@@ -1,32 +1,26 @@
 package model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 
-@Entity
 public class Thing {
-	private int id;
+	private String name;
 	private String message;
-	private Long timeMillis;
+	private String date;
 	private String systemMessage;
 	private int status;
-	@Id
-	@GeneratedValue
-	public int getId() {
-		return id;
-	}
+	
+	@XmlElement
 	public String getMessage() {
 		return message;
 	}
+	@XmlElement
 	public String getSystemMessage() {
 		return systemMessage;
 	}
+	@XmlAttribute
 	public int getStatus() {
 		return status;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	public void setMessage(String message) {
 		this.message = message;
@@ -37,10 +31,18 @@ public class Thing {
 	public void setStatus(int status) {
 		this.status = status;
 	}
-	public Long getTimeMillis() {
-		return timeMillis;
+	@XmlAttribute
+	public String getDate() {
+		return date;
 	}
-	public void setTimeMillis(Long timeMillis) {
-		this.timeMillis = timeMillis;
+	public void setDate(String date) {
+		this.date = date;
+	}
+	@XmlAttribute
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }
