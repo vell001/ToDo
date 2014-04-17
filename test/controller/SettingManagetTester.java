@@ -16,6 +16,6 @@ public class SettingManagetTester {
 
 	@Test
 	public void test() {
-		System.out.println(SettingManager.getSetting().getDBSetting().getBeforeSleepTime());
+		System.out.println(SettingManager.getManager().getDBSetting().getBeforeSleepTime());
 	}
 }

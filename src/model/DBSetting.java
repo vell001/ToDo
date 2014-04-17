@@ -3,13 +3,19 @@ package model;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * @author VellBibi
+ * a setting entity save to database
+ */
 @Entity
 public class DBSetting {
 	private int id;
-	private int beforeSleepTime;
-	private int sleepTime;
-	private int noticeTime;
-	private int status;
+	private int beforeSleepTime; // time of notice to sleep, second
+	private int sleepTime; // computer's sleep time, minute
+	private int beforeNoticeTime; // minute
+	private int noticeTime; // time of notice ToDo thing, minute
+	private int workTime; 
+	private int status; 
 
 	@Id
 	public int getId() {
@@ -41,5 +47,17 @@ public class DBSetting {
 	}
 	public void setNoticeTime(int noticeTime) {
 		this.noticeTime = noticeTime;
+	}
+	public int getBeforeNoticeTime() {
+		return beforeNoticeTime;
+	}
+	public void setBeforeNoticeTime(int beforeNoticeTime) {
+		this.beforeNoticeTime = beforeNoticeTime;
+	}
+	public int getWorkTime() {
+		return workTime;
+	}
+	public void setWorkTime(int workTime) {
+		this.workTime = workTime;
 	}
 }

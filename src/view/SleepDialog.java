@@ -13,7 +13,7 @@ import controller.SettingManager;
 public class SleepDialog extends Dialog{
 	private static final long serialVersionUID = 4834422536207853225L;
 
-	private Dimension screenSize = SettingManager.getSetting().getScreenSize();
+	private Dimension screenSize = SettingManager.getManager().getScreenSize();
 	private int height = screenSize.height / 4;
 	private int width = screenSize.width / 4;
 	private Label timeLabel;

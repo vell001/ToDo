@@ -1,12 +1,12 @@
 package main;
 
-import java.awt.event.WindowEvent;
-import java.awt.event.WindowFocusListener;
-
+import view.SleepFrame;
 import controller.SettingManager;
 
-import view.SleepFrame;
-
+/**
+ * @author VellBibi
+ * Sleep Thread
+ */
 public class SleepRunnable implements Runnable{
 	
 	@Override
@@ -15,23 +15,18 @@ public class SleepRunnable implements Runnable{
 		while(true) {
 			try {
 				sleepFrame.setVisible(false);
-				Thread.sleep(getMillisFromMinute(0));
-				sleepFrame.getDialog().setVisible(true);
+				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getDBSetting().getWorkTime())); // work time
+				sleepFrame.getDialog().setVisible(true); // show sleep notice dialog
 				
-				sleepFrame.addWindowFocusListener(new WindowFocusListener() {
-					public void windowGainedFocus(WindowEvent e) {}
-					public void windowLostFocus(WindowEvent e) {
-						sleepFrame.toFront();
-					}
-				});
-				// time count down
-				for(int i=5; i>0; i--) {
+				// time count down for sleep
+				for(int i=SettingManager.getManager().getDBSetting().getBeforeSleepTime(); i>0; i--) {
 					sleepFrame.getDialog().getTimeLabel().setText(""+i+"s");
 					Thread.sleep(1000);
 				}
-				sleepFrame.getDialog().setVisible(false);
-				sleepFrame.setVisible(true);
-				Thread.sleep(5000);
+				
+				sleepFrame.getDialog().setVisible(false); // hidden sleep notice dialog
+				sleepFrame.setVisible(true); // start sleep
+				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getDBSetting().getSleepTime()));
 			} catch (InterruptedException e) {
 				return;
 			}

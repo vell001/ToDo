@@ -36,7 +36,7 @@ public class SleepFrame extends Frame {
 		setTitle("Sleeping");
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Rectangle bounds = new Rectangle(screenSize);
-		setUndecorated(true); // 无边框
+		setUndecorated(true); // no border
 		setBounds(bounds);
 		setAlwaysOnTop(true);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
