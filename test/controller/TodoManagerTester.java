@@ -28,18 +28,16 @@ public class TodoManagerTester {
 		Todo todo = new Todo();
 		todo.setThings(new ArrayList<Thing>());
 		todo.getThings().add(thing);
-		TodoManager.getTodoManager().saveTodo(todo);
+		TodoManager.getTodoManager().saveTodo();
 	}
 	
 	public static void main(String[] args) {
 		Thing thing = new Thing();
-		thing.setMessage("helloworld");
+		thing.setMessage("helloworld001");
 		thing.setStatus(1);
 		thing.setName("tester");
-		Todo todo = new Todo();
-		todo.setThings(new ArrayList<Thing>());
-		todo.getThings().add(thing);
-		TodoManager.getTodoManager().saveTodo(todo);
+		TodoManager.getTodoManager().getTodo().getThings().add(thing);
+		TodoManager.getTodoManager().saveTodo();
+		System.out.println(TodoManager.getTodoManager().getTodo().getThings().get(0).getMessage());
 	}
-	
 }

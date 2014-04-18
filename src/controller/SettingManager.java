@@ -1,87 +1,89 @@
 package controller;
 
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.Toolkit;
-import java.io.InputStream;
+import java.io.File;
+import java.io.IOException;
+
+import javax.xml.bind.JAXBException;
 
 import model.Setting;
+import util.JAXBUtil;
 
 /**
  * @author VellBibi
  * All Setting information come from here
  */
 public class SettingManager {
-	private static SettingManager setting = null;
-	private Dimension screenSize = null;
-	private Setting DBS = null;
-	private Font vfont = null;
-	
+	private static SettingManager settingManager = null;
 	// SettingManager is a singleton
 	static {
-		setting = new SettingManager();
-		setting.setScreenSize(Toolkit.getDefaultToolkit().getScreenSize());
-		setting.initVFont();
+		settingManager = new SettingManager();
 	}
-	// default font
-	public void initVFont() {
-		InputStream in = SettingManager.class.getResourceAsStream("/font/vfont.TTF"); 
-		Font font = null;
-		try {
-			font = Font.createFont(Font.TRUETYPE_FONT, in);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} 
-		vfont = font.deriveFont(Font.PLAIN,24);
-//		vfont = new Font(null, Font.PLAIN, 24);
+	public static SettingManager getManager() {
+		return settingManager;
 	}
 	
-	public static SettingManager getManager() {
+	private Setting setting = null;
+	
+	private File settingFile = null;
+	
+	public SettingManager() {
+		this.settingFile = new File(SettingManager.class.getResource("/").getPath()+"setting.xml");
+		if(!this.settingFile.exists()) {
+			try {
+				this.settingFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			initSetting();
+		}
+		this.setting = readSetting();
+	}
+	
+	private void initSetting() {
+		this.setting = new Setting();
+		this.setting.setBeforeNoticeTime(5);
+		this.setting.setBeforeSleepTime(60);
+		this.setting.setNoticeTime(5);
+		this.setting.setSleepTime(5);
+		this.setting.setWorkTime(120);
+		saveSetting();
+	}
+	
+	public void saveSetting() {
+		try {
+			JAXBUtil.save(this.setting, Setting.class, this.settingFile);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public Setting getSetting() {
 		return setting;
 	}
-	
-	public Dimension getScreenSize() {
-		return screenSize;
-	}
-	public void setScreenSize(Dimension screenSize) {
-		this.screenSize = screenSize;
-	}
-	public int getBeforeSleepTime () {
-		return DBS.getBeforeSleepTime();
-	}
-	
-	public Setting getDBSetting() {
-		if(DBS == null){
-			DBS = getSetting();
-		}
-		return DBS;
-	}
-	
-	/**
-	 * @return DBSetting 
-	 * get a new object from database
-	 */
-	public Setting getSetting() {
-		return null;
-	}
-	
-	/**
-	 * @return DBSetting
-	 * initialize a DBSetting and save to database
-	 */
-	private Setting initSetting() {
-		return null;
-	}
-	
-	/**
-	 * @param dbs
-	 * saveOrUpdate dbs to database
-	 */
-	public void saveSetting(Setting setting) {
-		
+
+	public File getSettingFile() {
+		return settingFile;
 	}
 
-	public Font getVfont() {
-		return vfont;
+	private Setting readSetting() {
+		Setting setting = null;
+		try {
+			setting = (Setting) JAXBUtil.read(settingFile, Setting.class);
+		} catch (JAXBException e) {
+			e.printStackTrace();
+		}
+		return setting;
+	}
+
+	public void setSetting(Setting setting) {
+		this.setting = setting;
+	}
+
+	public void setSettingFile(File settingFile) {
+		this.settingFile = settingFile;
+	}
+	
+	public void updateSetting() {
+		this.setting = readSetting();
 	}
 }

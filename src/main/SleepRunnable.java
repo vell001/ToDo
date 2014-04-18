@@ -15,18 +15,18 @@ public class SleepRunnable implements Runnable{
 		while(true) {
 			try {
 				sleepFrame.setVisible(false);
-				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getDBSetting().getWorkTime())); // work time
+				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getSetting().getWorkTime())); // work time
 				sleepFrame.getDialog().setVisible(true); // show sleep notice dialog
 				
 				// time count down for sleep
-				for(int i=SettingManager.getManager().getDBSetting().getBeforeSleepTime(); i>0; i--) {
+				for(int i=SettingManager.getManager().getSetting().getBeforeSleepTime(); i>0; i--) {
 					sleepFrame.getDialog().getTimeLabel().setText(""+i+"s");
 					Thread.sleep(1000);
 				}
 				
 				sleepFrame.getDialog().setVisible(false); // hidden sleep notice dialog
 				sleepFrame.setVisible(true); // start sleep
-				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getDBSetting().getSleepTime()));
+				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getSetting().getSleepTime()));
 			} catch (InterruptedException e) {
 				return;
 			}

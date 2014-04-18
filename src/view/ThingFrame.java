@@ -17,7 +17,7 @@ public class ThingFrame extends Frame {
 	
 	public void initStyle() {
 		setTitle("Setting");
-		Dimension screenSize = SettingManager.getManager().getScreenSize();
+		Dimension screenSize = SettingManager.getManager().getSetting().getScreenSize();
         Rectangle bounds = new Rectangle(screenSize);
 		setUndecorated(true); // 无边框
 		setBounds(bounds);

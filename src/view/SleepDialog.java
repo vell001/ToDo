@@ -13,7 +13,7 @@ import controller.SettingManager;
 public class SleepDialog extends Dialog{
 	private static final long serialVersionUID = 4834422536207853225L;
 
-	private Dimension screenSize = SettingManager.getManager().getScreenSize();
+	private Dimension screenSize = SettingManager.getManager().getSetting().getScreenSize();
 	private int height = screenSize.height / 4;
 	private int width = screenSize.width / 4;
 	private Label timeLabel;
@@ -37,11 +37,11 @@ public class SleepDialog extends Dialog{
 	private void addComponents() {
 		timeLabel = new Label();
 		timeLabel.setAlignment(Label.CENTER);
-		timeLabel.setFont(SettingManager.getManager().getVfont().deriveFont(40));
+		timeLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(40));
 		mesLabel = new Label();
 		mesLabel.setAlignment(Label.CENTER);
 		mesLabel.setText(ResourceBundle.getBundle("string").getString("sleepText"));
-		mesLabel.setFont(SettingManager.getManager().getVfont().deriveFont(20));
+		mesLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(20));
 		add(timeLabel);
 		add(mesLabel);
 	}
