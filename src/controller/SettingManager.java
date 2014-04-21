@@ -13,11 +13,9 @@ import util.JAXBUtil;
  * All Setting information come from here
  */
 public class SettingManager {
-	private static SettingManager settingManager = null;
+	private static final SettingManager settingManager = new SettingManager();
 	// SettingManager is a singleton
-	static {
-		settingManager = new SettingManager();
-	}
+	
 	public static SettingManager getManager() {
 		return settingManager;
 	}
@@ -26,7 +24,7 @@ public class SettingManager {
 	
 	private File settingFile = null;
 	
-	public SettingManager() {
+	private SettingManager() {
 		this.settingFile = new File(SettingManager.class.getResource("/").getPath()+"setting.xml");
 		if(!this.settingFile.exists()) {
 			try {
@@ -41,11 +39,6 @@ public class SettingManager {
 	
 	private void initSetting() {
 		this.setting = new Setting();
-		this.setting.setBeforeNoticeTime(5);
-		this.setting.setBeforeSleepTime(60);
-		this.setting.setNoticeTime(5);
-		this.setting.setSleepTime(5);
-		this.setting.setWorkTime(120);
 		saveSetting();
 	}
 	

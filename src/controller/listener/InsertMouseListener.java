@@ -1,13 +1,12 @@
-package controller;
+package controller.listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class DoneButtonListener implements MouseListener {
-
+public class InsertMouseListener implements MouseListener {
+	
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("DoneButtonListenerClicked");
 	}
 
 	@Override
@@ -25,4 +24,5 @@ public class DoneButtonListener implements MouseListener {
 	@Override
 	public void mouseExited(MouseEvent e) {
 	}
+
 }

@@ -1,18 +1,12 @@
 package view;
 
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Frame;
-import java.util.Locale;
-import java.util.ResourceBundle;
 
-import javax.swing.UIManager;
+import model.Thing;
 
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import controller.SettingManager;
 
 public class TingNoticeDialogTester {
 
@@ -26,11 +20,15 @@ public class TingNoticeDialogTester {
 
 	@Test
 	public void test() {
-		Frame f = new Frame();
-		ThingNoticeDialog TND = new ThingNoticeDialog(f);
-		TND.getMesLabel().setText("test mes 信息");
-		TND.getTimeLabel().setText(ResourceBundle.getBundle("string", Locale.CHINA).getString("welcome"));
+		Thing thing = new Thing("hello", 3242342434134L, 2);
+		ThingNoticeDialog TND = new ThingNoticeDialog( thing);
 		TND.setVisible(true);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		TND.setVisible(false);
 	}
 	
 	public static void main(String[] args) {

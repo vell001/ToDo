@@ -13,47 +13,54 @@ import controller.SettingManager;
 
 /**
  * @author VellBibi
- * a setting entity save to database
+ * a setting entity save to xml
  */
 @XmlRootElement(name="Setting")
 public class Setting {
-	private int beforeNoticeTime; // minute
-	private int beforeSleepTime; // time of notice to sleep, second
-	private int noticeTime; // time of notice ToDo thing, minute
+	public static Long getMillisFromMinute(int minute) {
+		return 60000L * minute;
+	}
+	private int beforeSleepTime = 5; // time of notice to sleep, second
+	private Long checkTime = 5000L;
+	private String dateFormat = "yyyy-MM-dd HH:mm:ss";
+	private Long noticeTime = 5000L;//Setting.getMillisFromMinute(5); // time of notice ToDo thing, minute
 	private Dimension screenSize = null;
-	private int sleepTime; // computer's sleep time, minute 
+	private Long sleepTime = 10000L; // computer's sleep time, minute 
 	private Font vfont = null;
-	private int workTime;
 	
+	private Long workTime = Setting.getMillisFromMinute(0); // minute 
 	public Setting() {
 		initVFont();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-	}
-	
-	@XmlElement
-	public int getBeforeNoticeTime() {
-		return beforeNoticeTime;
 	}
 	@XmlElement
 	public int getBeforeSleepTime() {
 		return beforeSleepTime;
 	}
 	@XmlElement
-	public int getNoticeTime() {
+	public Long getCheckTime() {
+		return checkTime;
+	}
+	@XmlElement
+	public String getDateFormat() {
+		return dateFormat;
+	}
+	@XmlElement
+	public Long getNoticeTime() {
 		return noticeTime;
 	}
 	public Dimension getScreenSize() {
 		return screenSize;
 	}
 	@XmlElement
-	public int getSleepTime() {
+	public Long getSleepTime() {
 		return sleepTime;
 	}
 	public Font getVfont() {
 		return vfont;
 	}
 	@XmlElement
-	public int getWorkTime() {
+	public Long getWorkTime() {
 		return workTime;
 	}
 	// default font
@@ -67,19 +74,22 @@ public class Setting {
 		} 
 		vfont = font.deriveFont(Font.PLAIN,24);
 	}
-	public void setBeforeNoticeTime(int beforeNoticeTime) {
-		this.beforeNoticeTime = beforeNoticeTime;
-	}
 	public void setBeforeSleepTime(int beforeSleepTime) {
 		this.beforeSleepTime = beforeSleepTime;
 	}
-	public void setNoticeTime(int noticeTime) {
+	public void setCheckTime(Long checkTime) {
+		this.checkTime = checkTime;
+	}
+	public void setDateFormat(String dateFormat) {
+		this.dateFormat = dateFormat;
+	}
+	public void setNoticeTime(Long noticeTime) {
 		this.noticeTime = noticeTime;
 	}
-	public void setSleepTime(int sleepTime) {
+	public void setSleepTime(Long sleepTime) {
 		this.sleepTime = sleepTime;
 	}
-	public void setWorkTime(int workTime) {
+	public void setWorkTime(Long workTime) {
 		this.workTime = workTime;
 	}
 }

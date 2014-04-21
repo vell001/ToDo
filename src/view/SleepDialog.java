@@ -7,6 +7,8 @@ import java.awt.GridLayout;
 import java.awt.Label;
 import java.util.ResourceBundle;
 
+import javax.swing.JLabel;
+
 import controller.SettingManager;
 
 
@@ -16,8 +18,8 @@ public class SleepDialog extends Dialog{
 	private Dimension screenSize = SettingManager.getManager().getSetting().getScreenSize();
 	private int height = screenSize.height / 4;
 	private int width = screenSize.width / 4;
-	private Label timeLabel;
-	private Label mesLabel;
+	private JLabel timeLabel;
+	private JLabel mesLabel;
 	
 	public SleepDialog(Frame owner) {
 		super(owner);
@@ -35,22 +37,22 @@ public class SleepDialog extends Dialog{
 	}
 	
 	private void addComponents() {
-		timeLabel = new Label();
-		timeLabel.setAlignment(Label.CENTER);
+		timeLabel = new JLabel();
+		timeLabel.setAlignmentX(Label.CENTER);
 		timeLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(40));
-		mesLabel = new Label();
-		mesLabel.setAlignment(Label.CENTER);
+		mesLabel = new JLabel();
+		mesLabel.setAlignmentX(Label.CENTER);
 		mesLabel.setText(ResourceBundle.getBundle("string").getString("sleepText"));
 		mesLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(20));
 		add(timeLabel);
 		add(mesLabel);
 	}
 
-	public Label getTimeLabel() {
+	public JLabel getTimeLabel() {
 		return timeLabel;
 	}
 
-	public void setTimeLabel(Label label) {
+	public void setTimeLabel(JLabel label) {
 		this.timeLabel = label;
 	}
 }

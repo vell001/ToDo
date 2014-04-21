@@ -14,10 +14,8 @@ import util.JAXBUtil;
  * @author VellBibi
  */
 public class TodoManager {
-	private static TodoManager todoManager = null;
-	static {
-		todoManager = new TodoManager();
-	}
+	private static TodoManager todoManager = new TodoManager();
+	
 	public static TodoManager getTodoManager() {
 		return todoManager;
 	}
@@ -26,7 +24,7 @@ public class TodoManager {
 	
 	private File xmlFile = null;
 
-	public TodoManager() {
+	private TodoManager() {
 		this.xmlFile = new File(TodoManager.class.getResource("/").getPath()+"todo.xml");
 		if(!this.xmlFile.exists()) {
 			try {
@@ -37,6 +35,7 @@ public class TodoManager {
 			initTodo();
 		}
 		this.todo = readTodo();
+		if(this.todo.getThings() == null) initTodo();
 	}
 	
 	public Todo getTodo() {
@@ -48,8 +47,7 @@ public class TodoManager {
 	}
 	
 	private void initTodo() {
-		this.todo = new Todo();
-		this.todo.setThings(new ArrayList<Thing>());
+		this.todo = new Todo(new ArrayList<Thing>());
 		saveTodo();
 	}
 
@@ -78,7 +76,7 @@ public class TodoManager {
 	/**
 	 * update ToDo from xml
 	 */
-	public void updateTodo() {
+	public void updateTodoFromXml() {
 		todo = readTodo();
 	}
 }

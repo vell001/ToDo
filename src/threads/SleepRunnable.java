@@ -1,4 +1,4 @@
-package main;
+package threads;
 
 import view.SleepFrame;
 import controller.SettingManager;
@@ -8,14 +8,13 @@ import controller.SettingManager;
  * Sleep Thread
  */
 public class SleepRunnable implements Runnable{
-	
+	private final SleepFrame sleepFrame = new SleepFrame();
 	@Override
 	public void run() {
-		final SleepFrame sleepFrame = new SleepFrame();
 		while(true) {
 			try {
 				sleepFrame.setVisible(false);
-				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getSetting().getWorkTime())); // work time
+				Thread.sleep(SettingManager.getManager().getSetting().getWorkTime()); // work time
 				sleepFrame.getDialog().setVisible(true); // show sleep notice dialog
 				
 				// time count down for sleep
@@ -26,14 +25,10 @@ public class SleepRunnable implements Runnable{
 				
 				sleepFrame.getDialog().setVisible(false); // hidden sleep notice dialog
 				sleepFrame.setVisible(true); // start sleep
-				Thread.sleep(getMillisFromMinute(SettingManager.getManager().getSetting().getSleepTime()));
+				Thread.sleep(SettingManager.getManager().getSetting().getSleepTime());
 			} catch (InterruptedException e) {
 				return;
 			}
 		}
-	}
-	
-	public Long getMillisFromMinute(int minute) {
-		return 60000L * minute;
 	}
 }

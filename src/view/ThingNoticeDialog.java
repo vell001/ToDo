@@ -2,19 +2,18 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Button;
-import java.awt.Dialog;
 import java.awt.Dimension;
-import java.awt.Frame;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
 
-import controller.DelayButtonListener;
-import controller.DoneButtonListener;
-import controller.ModifyButtonListener;
-import controller.SettingManager;
+import javax.swing.JDialog;
 
-public class ThingNoticeDialog extends Dialog{
+import model.Thing;
+import controller.SettingManager;
+import controller.listener.ThingMouseListener;
+
+public class ThingNoticeDialog extends JDialog{
 	private static final long serialVersionUID = -7684181078148441850L;
 	
 	private Dimension screenSize = SettingManager.getManager().getSetting().getScreenSize();
@@ -27,15 +26,17 @@ public class ThingNoticeDialog extends Dialog{
 	private Button modifyButton;
 	private Panel mesPanel;
 	private Panel buttonPanel;
+	private Thing thing;
 	
-	public ThingNoticeDialog(Frame owner) {
-		super(owner);
-		
+	public ThingNoticeDialog(Thing thing) {
+		this.thing = thing;
 		initStyle();
 		
 		addComponents();
 		
 		addListener();
+		
+		update();
 	}
 	
 	private void initStyle() {
@@ -72,9 +73,9 @@ public class ThingNoticeDialog extends Dialog{
 	}
 	
 	private void addListener() {
-		doneButton.addMouseListener(new DoneButtonListener());
-		modifyButton.addMouseListener(new ModifyButtonListener());
-		delayButton.addMouseListener(new DelayButtonListener());
+		doneButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DONE));
+		modifyButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.MODIFY));
+		delayButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DELAY));
 	}
 
 	public Label getTimeLabel() {
@@ -83,5 +84,10 @@ public class ThingNoticeDialog extends Dialog{
 
 	public Label getMesLabel() {
 		return mesLabel;
+	}
+	
+	public void update() {
+		this.timeLabel.setText(thing.getDate());
+		this.mesLabel.setText(thing.getMessage());
 	}
 }

@@ -1,13 +1,13 @@
-package controller;
+package controller.listener;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class DelayButtonListener implements MouseListener {
+public class SettingMouseListener implements MouseListener {
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		System.out.println("DelayButtonListenerClicked");
+		System.out.println("SettingButtonListenerClicked");
 	}
 
 	@Override

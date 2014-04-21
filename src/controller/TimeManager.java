@@ -1,11 +1,9 @@
 package controller;
 
 public class TimeManager {
-	private static TimeManager TimeManager = null;
+	private static TimeManager TimeManager = new TimeManager();;
 	
-	static {
-		TimeManager = new TimeManager();
-	}
+	private TimeManager(){}
 	
 	public static TimeManager getTimeManager() {
 		return TimeManager;

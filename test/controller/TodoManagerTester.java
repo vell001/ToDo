@@ -25,8 +25,7 @@ public class TodoManagerTester {
 		thing.setMessage("helloworld");
 		thing.setStatus(1);
 		thing.setName("tester");
-		Todo todo = new Todo();
-		todo.setThings(new ArrayList<Thing>());
+		Todo todo = new Todo(new ArrayList<Thing>());
 		todo.getThings().add(thing);
 		TodoManager.getTodoManager().saveTodo();
 	}
