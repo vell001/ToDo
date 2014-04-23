@@ -29,6 +29,7 @@ public class ThingPanel extends JPanel{
 	private void initStyle() {
 		setLayout(new BorderLayout());
 		setBorder(new BevelBorder(BevelBorder.RAISED, Color.blue, Color.GRAY));
+		setSize(300, 100);
 	}
 	
 	private void addComponents() {
@@ -60,9 +61,10 @@ public class ThingPanel extends JPanel{
 	public void updateView() {
 		// update color
 		this.timeLabel.setForeground(Color.WHITE);
-		this.timeLabel.setBackground(thing.backgroundColors[thing.getStatus()]);
+		this.timeLabel.setBackground(Thing.backgroundColors[thing.getStatus()]);
 		// update text
 		this.timeLabel.setText(thing.getDate());
 		this.messageText.setText(thing.getMessage());
+		updateUI();
 	}
 }

@@ -34,6 +34,7 @@ import controller.SettingManager;
  * 日期时间选择控件 精确到秒
  */
 public class DateChooserJButton extends JButton {
+	private static final long serialVersionUID = 2030713773426187640L;
 	private DateChooser dateChooser = null;
 	private String preLabel = "";
 	
@@ -121,6 +122,7 @@ public class DateChooserJButton extends JButton {
 
 	private class DateChooser extends JPanel implements ActionListener,
 			ChangeListener {
+		private static final long serialVersionUID = 8554832141990331407L;
 		int startYear = 1980; // 默认【最小】显示年份
 		int lastYear = 2050; // 默认【最大】显示年份
 		int width = 400; // 界面宽度
@@ -135,10 +137,10 @@ public class DateChooserJButton extends JButton {
 		// 控制条配色------------------//
 		Color controlLineColor = Color.pink; // 控制条底色
 		Color controlTextColor = Color.white; // 控制条标签文字色
-		Color rbFontColor = Color.white; // RoundBox文字色
-		Color rbBorderColor = Color.red; // RoundBox边框色
-		Color rbButtonColor = Color.pink; // RoundBox按钮色
-		Color rbBtFontColor = Color.red; // RoundBox按钮文字色
+//		Color rbFontColor = Color.white; // RoundBox文字色
+//		Color rbBorderColor = Color.red; // RoundBox边框色
+//		Color rbButtonColor = Color.pink; // RoundBox按钮色
+//		Color rbBtFontColor = Color.red; // RoundBox按钮文字色
 		JDialog dialog;
 		JSpinner yearSpin;
 		JSpinner monthSpin;
@@ -286,6 +288,7 @@ public class DateChooserJButton extends JButton {
 			return result;
 		}
 
+		@SuppressWarnings("deprecation")
 		void showDateChooser(Point position) {
 			Window owner = (Window) SwingUtilities
 					.getWindowAncestor(DateChooserJButton.this);

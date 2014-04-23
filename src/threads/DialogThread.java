@@ -2,6 +2,8 @@ package threads;
 
 import javax.swing.JDialog;
 
+import view.ThingFrame;
+
 import controller.SettingManager;
 
 public class DialogThread extends Thread {
@@ -20,6 +22,7 @@ public class DialogThread extends Thread {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		} finally {
+			ThingFrame.getThingFrame().updateView();
 			dialog.setVisible(false);
 		}
 	}

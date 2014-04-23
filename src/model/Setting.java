@@ -2,11 +2,14 @@ package model;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.InputStream;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import util.ImageUtil;
 
 import controller.SettingManager;
 
@@ -20,15 +23,24 @@ public class Setting {
 	public static Long getMillisFromMinute(int minute) {
 		return 60000L * minute;
 	}
-	private int beforeSleepTime = 5; // time of notice to sleep, second
+	private int beforeSleepTime = 60; // time of notice to sleep, second
 	private Long checkTime = 5000L;
 	private String dateFormat = "yyyy-MM-dd HH:mm:ss";
-	private Long noticeTime = 5000L;//Setting.getMillisFromMinute(5); // time of notice ToDo thing, minute
+	private Image icon = ImageUtil.getImage("/images/logo.png");
+	private Long noticeTime = Setting.getMillisFromMinute(5); // time of notice ToDo thing, minute
 	private Dimension screenSize = null;
-	private Long sleepTime = 10000L; // computer's sleep time, minute 
+	private Long sleepTime = Setting.getMillisFromMinute(5);; // computer's sleep time, minute 
 	private Font vfont = null;
+	private Long delayTime = getMillisFromMinute(5);
+	private Long workTime = Setting.getMillisFromMinute(120); // minute 
 	
-	private Long workTime = Setting.getMillisFromMinute(0); // minute 
+	@XmlElement
+	public Long getDelayTime() {
+		return delayTime;
+	}
+	public void setDelayTime(Long delayTime) {
+		this.delayTime = delayTime;
+	}
 	public Setting() {
 		initVFont();
 		screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -44,6 +56,9 @@ public class Setting {
 	@XmlElement
 	public String getDateFormat() {
 		return dateFormat;
+	}
+	public Image getIcon() {
+		return icon;
 	}
 	@XmlElement
 	public Long getNoticeTime() {
@@ -82,6 +97,9 @@ public class Setting {
 	}
 	public void setDateFormat(String dateFormat) {
 		this.dateFormat = dateFormat;
+	}
+	public void setIcon(Image icon) {
+		this.icon = icon;
 	}
 	public void setNoticeTime(Long noticeTime) {
 		this.noticeTime = noticeTime;

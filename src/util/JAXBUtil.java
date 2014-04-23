@@ -19,4 +19,5 @@ public class JAXBUtil {
 		Marshaller marshaller = context.createMarshaller();
 		marshaller.marshal(object, xmlFile);
 	}
+	
 }

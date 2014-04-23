@@ -1,20 +1,24 @@
 package view;
 
+import java.awt.AWTEvent;
 import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Label;
 import java.awt.Panel;
+import java.awt.event.WindowEvent;
 
 import javax.swing.JDialog;
 
+import model.Setting;
 import model.Thing;
 import controller.SettingManager;
 import controller.listener.ThingMouseListener;
 
 public class ThingNoticeDialog extends JDialog{
 	private static final long serialVersionUID = -7684181078148441850L;
+	private Setting setting = SettingManager.getManager().getSetting();
 	
 	private Dimension screenSize = SettingManager.getManager().getSetting().getScreenSize();
 	private int height = screenSize.height / 4;
@@ -30,6 +34,7 @@ public class ThingNoticeDialog extends JDialog{
 	
 	public ThingNoticeDialog(Thing thing) {
 		this.thing = thing;
+		this.enableEvents(AWTEvent.WINDOW_EVENT_MASK);
 		initStyle();
 		
 		addComponents();
@@ -41,11 +46,20 @@ public class ThingNoticeDialog extends JDialog{
 	
 	private void initStyle() {
 		setAlwaysOnTop(true);
-		setUndecorated(true);
+		//setUndecorated(true);
 		setLayout(new BorderLayout());
 		setBounds(screenSize.width - width, screenSize.height - height, width, height);
+		setIconImage(setting.getIcon());
 	}
 	
+	@Override
+	protected void processWindowEvent(WindowEvent e) {
+		if (e.getID() == WindowEvent.WINDOW_CLOSING) {
+			return; // 直接返回，阻止默认动作，阻止窗口关闭
+		}
+		super.processWindowEvent(e);
+	}
+
 	private void addComponents() {
 		mesPanel = new Panel(new GridLayout(2, 1));
 		add(mesPanel, BorderLayout.CENTER);
@@ -73,9 +87,9 @@ public class ThingNoticeDialog extends JDialog{
 	}
 	
 	private void addListener() {
-		doneButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DONE));
-		modifyButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.MODIFY));
-		delayButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DELAY));
+		doneButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DONE, this));
+		modifyButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.MODIFY, this));
+		delayButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DELAY, this));
 	}
 
 	public Label getTimeLabel() {

@@ -4,7 +4,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
 import model.Thing;
-import controller.listener.InsertMouseListener;
+import controller.listener.InsertButtonActionListener;
 import controller.listener.ThingMouseListener;
 
 public class ThingPanelMenu extends JPopupMenu {
@@ -34,8 +34,8 @@ public class ThingPanelMenu extends JPopupMenu {
 	}
 	
 	private void addListeners() {
-		this.insertItem.addMouseListener(new InsertMouseListener());
-		this.deleteItem.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DELETE));
-		this.modifyItem.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.MODIFY));
+		this.insertItem.addActionListener(new InsertButtonActionListener());
+		this.deleteItem.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DELETE, this));
+		this.modifyItem.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.MODIFY, this));
 	}
 }

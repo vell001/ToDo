@@ -12,11 +12,10 @@ public class TimeTester {
 		Todo todo = TodoManager.getTodoManager().getTodo();
 		if(todo == null) {System.out.println("null"); return;}
 		List<Thing> things = todo.getThings();
-		things.add(new Thing("hello", System.currentTimeMillis()+5000, 2));
-		things.add(new Thing("hello", System.currentTimeMillis()+2000, 2));
-		things.add(new Thing("hello", System.currentTimeMillis()+1000, 2));
-		todo.sortThingList();
-		ThingFrame f = new ThingFrame(things);
+		things.add(new Thing("hello5", System.currentTimeMillis()+5000, Thing.TODO));
+		things.add(new Thing("hello2", System.currentTimeMillis()+2000, Thing.TODO));
+		things.add(new Thing("hello1", System.currentTimeMillis()+1000, Thing.TODO));
+		ThingFrame f = ThingFrame.getThingFrame();
 		f.setVisible(true);
 		new Thread(new TimeRunable()).start();
 	}
