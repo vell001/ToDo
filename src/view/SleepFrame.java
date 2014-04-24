@@ -41,8 +41,7 @@ public class SleepFrame extends Frame {
 		setBounds(bounds);
 		setAlwaysOnTop(true);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
-		Image img=ImageUtil.getImage("/images/logo.png");
-		setIconImage(img);
+		setIconImage(SettingManager.getManager().getSetting().getIcon());
 	}
 	
 	@Override

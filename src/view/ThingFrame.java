@@ -7,11 +7,10 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.ScrollPane;
 import java.awt.SystemTray;
+import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -62,8 +61,8 @@ public class ThingFrame extends JFrame {
 		setBounds(0, 0, 400, 600);
 		setResizable(false);
 		// trayIcon
-		trayIcon = new TrayIcon(icon, "Todo");
 		if (SystemTray.isSupported()) {
+			trayIcon = new TrayIcon(icon, "Todo");
 			SystemTray tray = SystemTray.getSystemTray();
 			try {
 				tray.add(trayIcon);
