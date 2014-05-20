@@ -21,7 +21,7 @@ public class Thing {
 	public static int TODO = 4;
 	private String date;
 	private String message;
-	private Long millis;
+	private Long millis; // date's millis
 	private String name;
 	private int status; 
 	private String systemMessage;

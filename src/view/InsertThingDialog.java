@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import model.Thing;
 import model.Todo;
+import util.ResourceBundleUtil;
 import controller.TodoManager;
 
 public class InsertThingDialog extends ModifyThingDialog {
@@ -12,7 +13,7 @@ public class InsertThingDialog extends ModifyThingDialog {
 	private Todo todo = TodoManager.getTodoManager().getTodo();
 
 	public InsertThingDialog() {
-		super(new Thing("your message", System.currentTimeMillis(), Thing.TODO));
+		super(new Thing(ResourceBundleUtil.getString("defaultThingMessage"), System.currentTimeMillis(), Thing.TODO));
 	}
 
 	protected void initStyle() {
@@ -31,6 +32,7 @@ public class InsertThingDialog extends ModifyThingDialog {
 				TodoManager.getTodoManager().saveTodo();
 				ThingFrame.getThingFrame().updateView();
 				setVisible(false);
+				dispose();
 			}
 		});
 	}

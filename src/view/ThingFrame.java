@@ -7,7 +7,6 @@ import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.ScrollPane;
 import java.awt.SystemTray;
-import java.awt.Toolkit;
 import java.awt.TrayIcon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -25,7 +24,6 @@ import model.Thing;
 import controller.SettingManager;
 import controller.TodoManager;
 import controller.listener.InsertButtonActionListener;
-import controller.listener.SettingMouseListener;
 
 public class ThingFrame extends JFrame {
 	private static final long serialVersionUID = 1950987589795392479L;
@@ -39,6 +37,7 @@ public class ThingFrame extends JFrame {
 	private JButton insertButton = null;
 	private JButton updateButton = null;
 	private JButton settingButton = null;
+	private JButton cleanButton = null;
 	private TrayIcon trayIcon = null;
 	private Image icon = setting.getIcon();
 	private JPanel colorPanel = null;
@@ -82,12 +81,14 @@ public class ThingFrame extends JFrame {
 		scrollPane.add(thingListPanel);
 		add(scrollPane, BorderLayout.CENTER);
 		// top button
-		topPanel = new JPanel(new GridLayout(1, 2));
+		topPanel = new JPanel(new GridLayout(1, 3));
 		insertButton = new JButton("insert");
 		updateButton = new JButton("update");
 		settingButton = new JButton("setting");
+		cleanButton = new JButton("clean");
 		topPanel.add(insertButton);
 		topPanel.add(updateButton);
+		topPanel.add(cleanButton);
 		topPanel.add(settingButton);
 		add(topPanel, BorderLayout.NORTH);
 		initColorPanel();
@@ -98,7 +99,6 @@ public class ThingFrame extends JFrame {
 		JLabel[] colorLabels = {new JLabel("NOTDO"), new JLabel("DELETE"), new JLabel("DONE"), new JLabel("DOING"), new JLabel("TODO")};
 		colorPanel = new JPanel(new GridLayout(1, colorLabels.length));
 		for(int i=0; i<colorLabels.length; i++) {
-//			colorLabels[i].setForeground(Color.WHITE);
 			colorLabels[i].setForeground(Thing.backgroundColors[i]);
 			colorLabels[i].setAlignmentX(JLabel.CENTER_ALIGNMENT);
 			colorPanel.add(colorLabels[i]);
@@ -121,7 +121,19 @@ public class ThingFrame extends JFrame {
 				updateView();
 			}
 		});
-		this.settingButton.addMouseListener(new SettingMouseListener());
+		this.cleanButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new CleanThingDialog().setVisible(true);
+				updateView();
+			}
+		});
+		this.settingButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new SettingDialog().setVisible(true);
+			}
+		});
 		this.trayIcon.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {

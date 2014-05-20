@@ -25,7 +25,7 @@ public class SleepFrame extends Frame {
 	public SleepFrame() {
 		setting = SettingManager.getManager().getSetting();
 		initStyle();
-		dialog = new SleepDialog(this);
+		dialog = new SleepDialog();
 		try {
 			lockMouse(new Robot());
 		} catch (AWTException e) {

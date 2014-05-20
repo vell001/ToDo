@@ -50,6 +50,7 @@ public class ThingNoticeDialog extends JDialog{
 		setLayout(new BorderLayout());
 		setBounds(screenSize.width - width, screenSize.height - height, width, height);
 		setIconImage(setting.getIcon());
+		setModal(true);
 	}
 	
 	@Override

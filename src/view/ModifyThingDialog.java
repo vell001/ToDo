@@ -5,15 +5,19 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.text.SimpleDateFormat;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import javax.swing.WindowConstants;
 
 import model.Setting;
 import model.Thing;
+import util.ResourceBundleUtil;
 import controller.SettingManager;
 import controller.TodoManager;
 import controller.listener.colorButtonsActionListener;
@@ -44,6 +48,8 @@ public class ModifyThingDialog extends JDialog {
 		setLocation((setting.getScreenSize().width - getWidth()) / 2,
 				(setting.getScreenSize().height - getHeight()) / 2);
 		setIconImage(setting.getIcon());
+		setModal(true);
+		setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 	}
 
 	protected void addComponents() {
@@ -84,13 +90,26 @@ public class ModifyThingDialog extends JDialog {
 				TodoManager.getTodoManager().saveTodo();
 				ThingFrame.getThingFrame().updateView();
 				setVisible(false);
+				dispose();
 			}
 		});
 		this.cancelButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("cancel");
 				setVisible(false);
+				dispose();
+			}
+		});
+		this.messageText.addFocusListener(new FocusListener() {
+			@Override
+			public void focusLost(FocusEvent e) {
+				if(messageText.getText().trim().equals(""))
+					messageText.setText(ResourceBundleUtil.getString("defaultThingMessage"));
+			}
+			@Override
+			public void focusGained(FocusEvent e) {
+				if(messageText.getText().equals(ResourceBundleUtil.getString("defaultThingMessage")))
+					messageText.setText("");
 			}
 		});
 	}
