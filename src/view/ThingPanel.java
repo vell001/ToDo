@@ -2,8 +2,8 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Label;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
@@ -14,7 +14,7 @@ import controller.listener.ThingPanelListener;
 public class ThingPanel extends JPanel{
 	private static final long serialVersionUID = -2185655644123920126L;
 	
-	private Label timeLabel;
+	private JLabel timeLabel;
 	private JTextArea messageText;
 	private final Thing thing;
 	
@@ -33,7 +33,7 @@ public class ThingPanel extends JPanel{
 	}
 	
 	private void addComponents() {
-		timeLabel = new Label();
+		timeLabel = new JLabel();
 		messageText = new JTextArea();
 		messageText.setEditable(false);
 		messageText.setLineWrap(true);
@@ -46,7 +46,7 @@ public class ThingPanel extends JPanel{
 		this.messageText.addMouseListener(new ThingPanelListener(this.messageText, thing));
 	}
 	
-	public Label getTimeLabel() {
+	public JLabel getTimeLabel() {
 		return timeLabel;
 	}
 
@@ -65,6 +65,8 @@ public class ThingPanel extends JPanel{
 		// update text
 		this.timeLabel.setText(thing.getDate());
 		this.messageText.setText(thing.getMessage());
+		this.timeLabel.setOpaque(true);
+		this.messageText.setOpaque(true);
 		updateUI();
 	}
 }

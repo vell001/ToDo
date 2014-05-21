@@ -2,9 +2,9 @@ package view;
 
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Label;
 
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 
 import util.ResourceBundleUtil;
 import controller.SettingManager;
@@ -16,10 +16,10 @@ public class SleepDialog extends JDialog{
 	private Dimension screenSize = SettingManager.getManager().getSetting().getScreenSize();
 	private int height = screenSize.height / 4;
 	private int width = screenSize.width / 4;
-	private Label timeLabel;
-	private Label mesLabel;
+	private JLabel timeLabel;
+	private JLabel mesLabel;
 	
-	public SleepDialog() {		
+	public SleepDialog() {
 		initStyle();
 		
 		addComponents();
@@ -30,26 +30,25 @@ public class SleepDialog extends JDialog{
 		setAlwaysOnTop(true);
 		setUndecorated(true);
 		setLayout(new GridLayout(2, 1));
-		setModal(true);
 	}
 	
 	private void addComponents() {
-		timeLabel = new Label();
-		timeLabel.setAlignment(Label.CENTER);
+		timeLabel = new JLabel("time", JLabel.CENTER);
 		timeLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(40));
-		mesLabel = new Label();
-		mesLabel.setAlignment(Label.CENTER);
+		mesLabel = new JLabel("message", JLabel.CENTER);
 		mesLabel.setText(ResourceBundleUtil.getString("sleepText"));
 		mesLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(20));
+		timeLabel.setOpaque(true);
+		mesLabel.setOpaque(true);
 		add(timeLabel);
 		add(mesLabel);
 	}
-
-	public Label getTimeLabel() {
-		return timeLabel;
+	
+	public void setTime(String time) {
+		timeLabel.setText(time);
 	}
-
-	public void setTimeLabel(Label label) {
-		this.timeLabel = label;
+	
+	public void setMessage(String message) {
+		mesLabel.setText(message);
 	}
 }

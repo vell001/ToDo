@@ -5,11 +5,11 @@ import java.awt.BorderLayout;
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.Panel;
 import java.awt.event.WindowEvent;
 
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 
 import model.Setting;
 import model.Thing;
@@ -23,8 +23,8 @@ public class ThingNoticeDialog extends JDialog{
 	private Dimension screenSize = SettingManager.getManager().getSetting().getScreenSize();
 	private int height = screenSize.height / 4;
 	private int width = screenSize.width / 4;
-	private Label timeLabel;
-	private Label mesLabel;
+	private JLabel timeLabel;
+	private JLabel mesLabel;
 	private Button doneButton;
 	private Button delayButton;
 	private Button modifyButton;
@@ -65,13 +65,11 @@ public class ThingNoticeDialog extends JDialog{
 		mesPanel = new Panel(new GridLayout(2, 1));
 		add(mesPanel, BorderLayout.CENTER);
 		
-		timeLabel = new Label();
-		timeLabel.setAlignment(Label.CENTER);
+		timeLabel = new JLabel("time", JLabel.CENTER);
 		timeLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(40));
 		mesPanel.add(timeLabel);
 		
-		mesLabel = new Label();
-		mesLabel.setAlignment(Label.CENTER);
+		mesLabel = new JLabel("message", JLabel.CENTER);
 		mesLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(20));
 		mesPanel.add(mesLabel);
 		
@@ -93,11 +91,11 @@ public class ThingNoticeDialog extends JDialog{
 		delayButton.addMouseListener(new ThingMouseListener(thing, ThingMouseListener.DELAY, this));
 	}
 
-	public Label getTimeLabel() {
+	public JLabel getTimeLabel() {
 		return timeLabel;
 	}
 
-	public Label getMesLabel() {
+	public JLabel getMesLabel() {
 		return mesLabel;
 	}
 	

@@ -3,7 +3,6 @@ package view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -12,6 +11,7 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
@@ -27,7 +27,7 @@ public class CleanThingDialog extends JDialog {
 	private Todo todo = TodoManager.getTodoManager().getTodo();
 	private Setting setting = SettingManager.getManager().getSetting();
 	private char[] toCleanStatusChars = setting.getToCleanStatuses().toCharArray();
-	private Label noticeText = null;
+	private JLabel noticeText = null;
 	private JPanel checkBoxPanel = null;
 	JCheckBox[] checkBoxs = {new JCheckBox("NOTDO"), new JCheckBox("DELETE"), new JCheckBox("DONE"), new JCheckBox("DOING"), new JCheckBox("TODO")};
 	protected JButton confirmButton = new JButton("Confirm");
@@ -52,8 +52,7 @@ public class CleanThingDialog extends JDialog {
 	}
 	
 	private void addComponents() {
-		noticeText = new Label(ResourceBundleUtil.getString("cleanThingDialogNoticeText"));
-		noticeText.setAlignment(Label.CENTER);
+		noticeText = new JLabel(ResourceBundleUtil.getString("cleanThingDialogNoticeText"), JLabel.CENTER);
 		this.add(noticeText, BorderLayout.NORTH);
 		
 		initCheckBoxPanel();

@@ -2,7 +2,6 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,6 +10,7 @@ import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
@@ -22,8 +22,8 @@ import controller.SettingManager;
 public class SettingDialog extends JDialog {
 	private static final long serialVersionUID = 8376100275979503453L;
 	private Setting setting = SettingManager.getManager().getSetting();
-	private List<Label> settingTimeLabelList = new ArrayList<Label>();
-	private List<Label> settingTimeUnitLabelList = new ArrayList<Label>();
+	private List<JLabel> settingTimeLabelList = new ArrayList<JLabel>();
+	private List<JLabel> settingTimeUnitLabelList = new ArrayList<JLabel>();
 	private List<JTextField> settingTimeFieldList = new ArrayList<JTextField>();
 	private List<JPanel> settingTimePanelList = new ArrayList<JPanel>();
 	protected JButton confirmButton = new JButton("Confirm");
@@ -84,29 +84,29 @@ public class SettingDialog extends JDialog {
 	
 	private void initSettingTimePanelList() {
 		// beforeSleepTime s
-		settingTimeLabelList.add(new Label(ResourceBundleUtil.getString("beforeSleepTimeLabel")));
+		settingTimeLabelList.add(new JLabel(ResourceBundleUtil.getString("beforeSleepTimeLabel")));
 		settingTimeFieldList.add(new JTextField(String.valueOf(setting.getBeforeSleepTime())));
-		settingTimeUnitLabelList.add(new Label("s"));
+		settingTimeUnitLabelList.add(new JLabel("s"));
 		// checkTime ms
-		settingTimeLabelList.add(new Label(ResourceBundleUtil.getString("checkTimeLabel")));
+		settingTimeLabelList.add(new JLabel(ResourceBundleUtil.getString("checkTimeLabel")));
 		settingTimeFieldList.add(new JTextField(String.valueOf(setting.getCheckTime())));
-		settingTimeUnitLabelList.add(new Label("ms"));
+		settingTimeUnitLabelList.add(new JLabel("ms"));
 		// delayTime m
-		settingTimeLabelList.add(new Label(ResourceBundleUtil.getString("delayTimeLabel")));
+		settingTimeLabelList.add(new JLabel(ResourceBundleUtil.getString("delayTimeLabel")));
 		settingTimeFieldList.add(new JTextField(String.valueOf(Setting.getMinuteFromMillis(setting.getDelayTime()))));
-		settingTimeUnitLabelList.add(new Label("m"));
+		settingTimeUnitLabelList.add(new JLabel("m"));
 		// noticeTime m
-		settingTimeLabelList.add(new Label(ResourceBundleUtil.getString("noticeTimeLabel")));
+		settingTimeLabelList.add(new JLabel(ResourceBundleUtil.getString("noticeTimeLabel")));
 		settingTimeFieldList.add(new JTextField(String.valueOf(Setting.getMinuteFromMillis(setting.getNoticeTime()))));
-		settingTimeUnitLabelList.add(new Label("m"));
+		settingTimeUnitLabelList.add(new JLabel("m"));
 		// sleepTime m
-		settingTimeLabelList.add(new Label(ResourceBundleUtil.getString("sleepTimeLabel")));
+		settingTimeLabelList.add(new JLabel(ResourceBundleUtil.getString("sleepTimeLabel")));
 		settingTimeFieldList.add(new JTextField(String.valueOf(Setting.getMinuteFromMillis(setting.getSleepTime()))));
-		settingTimeUnitLabelList.add(new Label("m"));
+		settingTimeUnitLabelList.add(new JLabel("m"));
 		// workTime m
-		settingTimeLabelList.add(new Label(ResourceBundleUtil.getString("workTimeLabel")));
+		settingTimeLabelList.add(new JLabel(ResourceBundleUtil.getString("workTimeLabel")));
 		settingTimeFieldList.add(new JTextField(String.valueOf(Setting.getMinuteFromMillis(setting.getWorkTime()))));
-		settingTimeUnitLabelList.add(new Label("m"));
+		settingTimeUnitLabelList.add(new JLabel("m"));
 		
 		JPanel mainPanel = null;
 		JPanel secondPanel = null;

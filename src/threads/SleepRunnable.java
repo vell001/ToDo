@@ -19,7 +19,7 @@ public class SleepRunnable implements Runnable{
 				
 				// time count down for sleep
 				for(int i=SettingManager.getManager().getSetting().getBeforeSleepTime(); i>0; i--) {
-					sleepFrame.getDialog().getTimeLabel().setText(""+i+"s");
+					sleepFrame.getDialog().setTime(""+i+"s");
 					Thread.sleep(1000);
 				}
 				
