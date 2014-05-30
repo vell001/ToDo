@@ -1,10 +1,15 @@
 package view;
 
+import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 import util.ResourceBundleUtil;
 import controller.SettingManager;
@@ -18,18 +23,33 @@ public class SleepDialog extends JDialog{
 	private int width = screenSize.width / 4;
 	private JLabel timeLabel;
 	private JLabel mesLabel;
+	private JPanel buttonPanel;
+	private JPanel mesPanel;
+	private JButton delayButton;
 	
 	public SleepDialog() {
 		initStyle();
 		
 		addComponents();
+		
+		addListeners();
 	}
 	
+	private void addListeners() {
+		delayButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SettingManager.getManager().getSetting().setSleepDelay(true);
+				setVisible(false);
+			}
+		});
+	}
+
 	private void initStyle() {
 		setBounds(screenSize.width - width, screenSize.height - height, width, height);
 		setAlwaysOnTop(true);
 		setUndecorated(true);
-		setLayout(new GridLayout(2, 1));
+		setLayout(new BorderLayout());
 	}
 	
 	private void addComponents() {
@@ -40,8 +60,16 @@ public class SleepDialog extends JDialog{
 		mesLabel.setFont(SettingManager.getManager().getSetting().getVfont().deriveFont(20));
 		timeLabel.setOpaque(true);
 		mesLabel.setOpaque(true);
-		add(timeLabel);
-		add(mesLabel);
+		
+		mesPanel = new JPanel(new GridLayout(2, 1));
+		buttonPanel = new JPanel(new GridLayout(1,1));
+		delayButton = new JButton(ResourceBundleUtil.getString("delayButton"));
+		mesPanel.add(timeLabel);
+		mesPanel.add(mesLabel);
+		buttonPanel.add(delayButton);
+		
+		this.add(mesPanel, BorderLayout.CENTER);
+		this.add(buttonPanel, BorderLayout.SOUTH);
 	}
 	
 	public void setTime(String time) {

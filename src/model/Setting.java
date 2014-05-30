@@ -36,6 +36,7 @@ public class Setting {
 	private String toCleanStatuses = null; // "00100"
 	private Font vfont = null;
 	private Long workTime = Setting.getMillisFromMinute(120); // minute 
+	private boolean sleepDelay = false; // to delay sleep
 	
 	public Setting() {
 		initVFont();
@@ -124,5 +125,11 @@ public class Setting {
 	}
 	public void setWorkTime(Long workTime) {
 		this.workTime = workTime;
+	}
+	public boolean isSleepDelay() {
+		return sleepDelay;
+	}
+	public void setSleepDelay(boolean sleepDelay) {
+		this.sleepDelay = sleepDelay;
 	}
 }

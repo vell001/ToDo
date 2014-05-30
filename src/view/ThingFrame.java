@@ -19,6 +19,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import util.ResourceBundleUtil;
+
 import model.Setting;
 import model.Thing;
 import controller.SettingManager;
@@ -82,10 +84,10 @@ public class ThingFrame extends JFrame {
 		add(scrollPane, BorderLayout.CENTER);
 		// top button
 		topPanel = new JPanel(new GridLayout(1, 3));
-		insertButton = new JButton("insert");
-		updateButton = new JButton("update");
-		settingButton = new JButton("setting");
-		cleanButton = new JButton("clean");
+		insertButton = new JButton(ResourceBundleUtil.getString("insertButton"));
+		updateButton = new JButton(ResourceBundleUtil.getString("updateButton"));
+		settingButton = new JButton(ResourceBundleUtil.getString("settingButton"));
+		cleanButton = new JButton(ResourceBundleUtil.getString("cleanButton"));
 		topPanel.add(insertButton);
 		topPanel.add(updateButton);
 		topPanel.add(cleanButton);

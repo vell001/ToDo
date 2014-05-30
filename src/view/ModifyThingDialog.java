@@ -27,8 +27,8 @@ public class ModifyThingDialog extends JDialog {
 	protected Thing thing = null;
 	protected DateChooserJButton dateChooserJButton = null;
 	protected JTextArea messageText = new JTextArea();
-	protected JButton confirmButton = new JButton("Confirm");
-	protected JButton cancelButton = new JButton("Cancel");
+	protected JButton confirmButton = new JButton(ResourceBundleUtil.getString("confirmButton"));
+	protected JButton cancelButton = new JButton(ResourceBundleUtil.getString("cancelButton"));
 	protected JPanel southPanel = new JPanel(new GridLayout(1, 2));
 	protected Setting setting = SettingManager.getManager().getSetting();
 	protected JPanel colorPanel = null;

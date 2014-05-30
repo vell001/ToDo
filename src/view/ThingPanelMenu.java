@@ -3,6 +3,8 @@ package view;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 
+import util.ResourceBundleUtil;
+
 import model.Thing;
 import controller.listener.InsertButtonActionListener;
 import controller.listener.ThingMouseListener;
@@ -12,9 +14,9 @@ public class ThingPanelMenu extends JPopupMenu {
 
 	private Thing thing = null;
 	
-	private JMenuItem deleteItem = new JMenuItem("Delete");
-	private JMenuItem insertItem = new JMenuItem("Insert");
-	private JMenuItem modifyItem = new JMenuItem("Modify");
+	private JMenuItem deleteItem = new JMenuItem(ResourceBundleUtil.getString("deleteButton"));
+	private JMenuItem insertItem = new JMenuItem(ResourceBundleUtil.getString("insertButton"));
+	private JMenuItem modifyItem = new JMenuItem(ResourceBundleUtil.getString("modifyButton"));
 	
 	public ThingPanelMenu(Thing thing){
 		this.thing = thing;

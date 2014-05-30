@@ -30,8 +30,8 @@ public class CleanThingDialog extends JDialog {
 	private JLabel noticeText = null;
 	private JPanel checkBoxPanel = null;
 	JCheckBox[] checkBoxs = {new JCheckBox("NOTDO"), new JCheckBox("DELETE"), new JCheckBox("DONE"), new JCheckBox("DOING"), new JCheckBox("TODO")};
-	protected JButton confirmButton = new JButton("Confirm");
-	protected JButton cancelButton = new JButton("Cancel");
+	protected JButton confirmButton = new JButton(ResourceBundleUtil.getString("confirmButton"));
+	protected JButton cancelButton = new JButton(ResourceBundleUtil.getString("cancelButton"));
 	protected JPanel southPanel = new JPanel(new GridLayout(1, 2));
 	
 	public CleanThingDialog() {

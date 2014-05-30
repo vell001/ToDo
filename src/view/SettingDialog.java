@@ -26,8 +26,8 @@ public class SettingDialog extends JDialog {
 	private List<JLabel> settingTimeUnitLabelList = new ArrayList<JLabel>();
 	private List<JTextField> settingTimeFieldList = new ArrayList<JTextField>();
 	private List<JPanel> settingTimePanelList = new ArrayList<JPanel>();
-	protected JButton confirmButton = new JButton("Confirm");
-	protected JButton cancelButton = new JButton("Cancel");
+	protected JButton confirmButton = new JButton(ResourceBundleUtil.getString("confirmButton"));
+	protected JButton cancelButton = new JButton(ResourceBundleUtil.getString("cancelButton"));
 	protected JPanel southPanel = new JPanel(new GridLayout(1, 2));
 	
 	private JPanel settingPanel = null;

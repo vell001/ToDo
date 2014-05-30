@@ -11,6 +11,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 
+import util.ResourceBundleUtil;
+
 import model.Setting;
 import model.Thing;
 import controller.SettingManager;
@@ -76,9 +78,9 @@ public class ThingNoticeDialog extends JDialog{
 		buttonPanel = new Panel(new GridLayout(1, 3));
 		add(buttonPanel, BorderLayout.SOUTH);
 		
-		doneButton = new Button("done");
-		modifyButton = new Button("modify");
-		delayButton = new Button("delay");
+		doneButton = new Button(ResourceBundleUtil.getString("doneButton"));
+		modifyButton = new Button(ResourceBundleUtil.getString("modifyButton"));
+		delayButton = new Button(ResourceBundleUtil.getString("delayButton"));
 		
 		buttonPanel.add(doneButton);
 		buttonPanel.add(delayButton);
