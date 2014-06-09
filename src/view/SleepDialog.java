@@ -11,8 +11,10 @@ import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import manager.SettingManager;
+import model.Setting;
+
 import util.ResourceBundleUtil;
-import controller.SettingManager;
 
 
 public class SleepDialog extends JDialog{
@@ -26,6 +28,7 @@ public class SleepDialog extends JDialog{
 	private JPanel buttonPanel;
 	private JPanel mesPanel;
 	private JButton delayButton;
+	private JButton doButton;
 	
 	public SleepDialog() {
 		initStyle();
@@ -39,7 +42,14 @@ public class SleepDialog extends JDialog{
 		delayButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				SettingManager.getManager().getSetting().setSleepDelay(true);
+				SettingManager.getManager().getSetting().setSleepDelay(Setting.DELAY);
+				setVisible(false);
+			}
+		});
+		doButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				SettingManager.getManager().getSetting().setSleepDelay(Setting.DOITNOW);
 				setVisible(false);
 			}
 		});
@@ -62,11 +72,13 @@ public class SleepDialog extends JDialog{
 		mesLabel.setOpaque(true);
 		
 		mesPanel = new JPanel(new GridLayout(2, 1));
-		buttonPanel = new JPanel(new GridLayout(1,1));
+		buttonPanel = new JPanel(new GridLayout(1,2));
 		delayButton = new JButton(ResourceBundleUtil.getString("delayButton"));
+		doButton = new JButton(ResourceBundleUtil.getString("doButton"));
 		mesPanel.add(timeLabel);
 		mesPanel.add(mesLabel);
 		buttonPanel.add(delayButton);
+		buttonPanel.add(doButton);
 		
 		this.add(mesPanel, BorderLayout.CENTER);
 		this.add(buttonPanel, BorderLayout.SOUTH);

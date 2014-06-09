@@ -9,8 +9,9 @@ import java.io.InputStream;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import manager.SettingManager;
+
 import util.ImageUtil;
-import controller.SettingManager;
 
 
 /**
@@ -25,18 +26,22 @@ public class Setting {
 	public static int getMinuteFromMillis(Long millis) {
 		return (int) (millis / 60000L);
 	}
+	public static int DELAY = 1;
+	public static int NONDELAY = 0;
+	public static int DOITNOW = 2;
 	private int beforeSleepTime = 60; // time of notice to sleep, second
 	private Long checkTime = 5000L;
 	private String dateFormat = "yyyy-MM-dd HH:mm:ss";
 	private Long delayTime = Setting.getMillisFromMinute(5);
 	private Image icon = ImageUtil.getImage("/images/logo.png");
+	private Image sleepImage = ImageUtil.getImage("/images/sleep.jpg");
 	private Long noticeTime = Setting.getMillisFromMinute(5); // time of notice ToDo thing, minute; // computer's sleep time, minute 
 	private Dimension screenSize = null;
 	private Long sleepTime = Setting.getMillisFromMinute(5);
 	private String toCleanStatuses = null; // "00100"
 	private Font vfont = null;
 	private Long workTime = Setting.getMillisFromMinute(120); // minute 
-	private boolean sleepDelay = false; // to delay sleep
+	private int sleepDelay = NONDELAY; // to delay sleep
 	
 	public Setting() {
 		initVFont();
@@ -111,9 +116,6 @@ public class Setting {
 	public void setDelayTime(Long delayTime) {
 		this.delayTime = delayTime;
 	}
-	public void setIcon(Image icon) {
-		this.icon = icon;
-	}
 	public void setNoticeTime(Long noticeTime) {
 		this.noticeTime = noticeTime;
 	}
@@ -126,10 +128,13 @@ public class Setting {
 	public void setWorkTime(Long workTime) {
 		this.workTime = workTime;
 	}
-	public boolean isSleepDelay() {
+	public int getSleepDelay() {
 		return sleepDelay;
 	}
-	public void setSleepDelay(boolean sleepDelay) {
+	public void setSleepDelay(int sleepDelay) {
 		this.sleepDelay = sleepDelay;
+	}
+	public Image getSleepImage() {
+		return sleepImage;
 	}
 }

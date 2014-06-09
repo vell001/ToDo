@@ -15,12 +15,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.WindowConstants;
 
+import manager.SettingManager;
+import manager.TodoManager;
+import manager.listener.colorButtonsActionListener;
 import model.Setting;
 import model.Thing;
 import util.ResourceBundleUtil;
-import controller.SettingManager;
-import controller.TodoManager;
-import controller.listener.colorButtonsActionListener;
 
 public class ModifyThingDialog extends JDialog {
 	private static final long serialVersionUID = -5811564425597917454L;

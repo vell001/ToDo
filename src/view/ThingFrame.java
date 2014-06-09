@@ -21,11 +21,11 @@ import javax.swing.JPanel;
 
 import util.ResourceBundleUtil;
 
+import manager.SettingManager;
+import manager.TodoManager;
+import manager.listener.InsertButtonActionListener;
 import model.Setting;
 import model.Thing;
-import controller.SettingManager;
-import controller.TodoManager;
-import controller.listener.InsertButtonActionListener;
 
 public class ThingFrame extends JFrame {
 	private static final long serialVersionUID = 1950987589795392479L;

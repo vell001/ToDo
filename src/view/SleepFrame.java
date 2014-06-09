@@ -3,7 +3,6 @@ package view;
 import java.awt.AWTException;
 import java.awt.Frame;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.MouseInfo;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -14,9 +13,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowFocusListener;
 import java.awt.event.WindowListener;
 
+import manager.SettingManager;
 import model.Setting;
-import util.ImageUtil;
-import controller.SettingManager;
 
 public class SleepFrame extends Frame {
 	private static final long serialVersionUID = -2583580578022531879L;
@@ -46,8 +44,7 @@ public class SleepFrame extends Frame {
 	
 	@Override
 	public void paint(Graphics g) {
-		Image img=ImageUtil.getImage("/images/sleep.jpg");
-		g.drawImage(img,0,0,setting.getScreenSize().width,setting.getScreenSize().height,null);
+		g.drawImage(setting.getSleepImage(),0,0,setting.getScreenSize().width,setting.getScreenSize().height,null);
 	}
 
 	public SleepDialog getDialog() {

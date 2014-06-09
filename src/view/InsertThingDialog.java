@@ -3,10 +3,10 @@ package view;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import manager.TodoManager;
 import model.Thing;
 import model.Todo;
 import util.ResourceBundleUtil;
-import controller.TodoManager;
 
 public class InsertThingDialog extends ModifyThingDialog {
 	private static final long serialVersionUID = 2057460434009188091L;

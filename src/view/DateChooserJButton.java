@@ -28,7 +28,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import controller.SettingManager;
+import manager.SettingManager;
+
 
 /**
  * 日期时间选择控件 精确到秒

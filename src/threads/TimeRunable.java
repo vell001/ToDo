@@ -4,12 +4,12 @@ import java.util.List;
 
 import javax.swing.JDialog;
 
+import manager.SettingManager;
+import manager.TodoManager;
 import model.Setting;
 import model.Thing;
 import model.Todo;
 import view.ThingNoticeDialog;
-import controller.SettingManager;
-import controller.TodoManager;
 
 public class TimeRunable implements Runnable {
 	private Setting setting = SettingManager.getManager().getSetting();

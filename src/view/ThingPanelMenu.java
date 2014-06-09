@@ -5,9 +5,9 @@ import javax.swing.JPopupMenu;
 
 import util.ResourceBundleUtil;
 
+import manager.listener.InsertButtonActionListener;
+import manager.listener.ThingMouseListener;
 import model.Thing;
-import controller.listener.InsertButtonActionListener;
-import controller.listener.ThingMouseListener;
 
 public class ThingPanelMenu extends JPopupMenu {
 	private static final long serialVersionUID = -5129788468090313685L;

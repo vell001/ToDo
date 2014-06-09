@@ -15,9 +15,9 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
+import manager.SettingManager;
 import model.Setting;
 import util.ResourceBundleUtil;
-import controller.SettingManager;
 
 public class SettingDialog extends JDialog {
 	private static final long serialVersionUID = 8376100275979503453L;

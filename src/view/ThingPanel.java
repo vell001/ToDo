@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.BevelBorder;
 
+import manager.listener.ThingPanelListener;
 import model.Thing;
-import controller.listener.ThingPanelListener;
 
 public class ThingPanel extends JPanel{
 	private static final long serialVersionUID = -2185655644123920126L;

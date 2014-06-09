@@ -15,12 +15,12 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.WindowConstants;
 
+import manager.SettingManager;
+import manager.TodoManager;
 import model.Setting;
 import model.Thing;
 import model.Todo;
 import util.ResourceBundleUtil;
-import controller.SettingManager;
-import controller.TodoManager;
 
 public class CleanThingDialog extends JDialog {
 	private static final long serialVersionUID = 7336810745860478278L;

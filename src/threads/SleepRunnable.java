@@ -1,8 +1,8 @@
 package threads;
 
+import manager.SettingManager;
 import model.Setting;
 import view.SleepFrame;
-import controller.SettingManager;
 
 /**
  * @author VellBibi
@@ -24,11 +24,15 @@ public class SleepRunnable implements Runnable{
 					sleepFrame.getDialog().setTime(""+i+"s");
 					Thread.sleep(1000);
 					// delay sleep
-					if(setting.isSleepDelay()) {
-						setting.setSleepDelay(false);
+					if(setting.getSleepDelay() == Setting.DELAY) {
+						setting.setSleepDelay(Setting.NONDELAY);
 						Thread.sleep(setting.getDelayTime());
-						i = setting.getBeforeSleepTime() + 1;
+						i = setting.getBeforeSleepTime();
 						sleepFrame.getDialog().setVisible(true);
+						continue;
+					} else if(setting.getSleepDelay() == Setting.DOITNOW) {
+						setting.setSleepDelay(Setting.NONDELAY);
+						break;
 					}
 				}
 				

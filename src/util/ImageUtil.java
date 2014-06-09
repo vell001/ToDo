@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.net.URL;
 
 public class ImageUtil {
+	
 	public static Image getImage(String path) {
 		URL url = ImageUtil.class.getClass().getResource(path);
 		Image image = null;

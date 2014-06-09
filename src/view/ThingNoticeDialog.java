@@ -13,10 +13,10 @@ import javax.swing.JLabel;
 
 import util.ResourceBundleUtil;
 
+import manager.SettingManager;
+import manager.listener.ThingMouseListener;
 import model.Setting;
 import model.Thing;
-import controller.SettingManager;
-import controller.listener.ThingMouseListener;
 
 public class ThingNoticeDialog extends JDialog{
 	private static final long serialVersionUID = -7684181078148441850L;

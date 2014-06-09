@@ -2,9 +2,10 @@ package threads;
 
 import javax.swing.JDialog;
 
+import manager.SettingManager;
+
 import view.ThingFrame;
 
-import controller.SettingManager;
 
 public class DialogThread extends Thread {
 	

@@ -7,7 +7,8 @@ import java.util.Date;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 
-import controller.SettingManager;
+import manager.SettingManager;
+
 
 public class Thing {
 	/**
